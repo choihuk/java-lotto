@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.request.PurchaseLottoRequest;
 import lotto.view.PurchaseLottoTuiView;
 import lotto.view.PurchaseLottoView;
 
