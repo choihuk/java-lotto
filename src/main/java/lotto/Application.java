@@ -1,7 +1,14 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.request.PurchaseLottoRequest;
+import lotto.view.PurchaseLottoTuiView;
+import lotto.view.PurchaseLottoView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        PurchaseLottoView purchaseLottoView = new PurchaseLottoTuiView();
+        LottoController lottoController = new LottoController(purchaseLottoView);
+        lottoController.run();
     }
 }
