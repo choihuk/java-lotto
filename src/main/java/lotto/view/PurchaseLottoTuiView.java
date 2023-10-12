@@ -37,6 +37,11 @@ public class PurchaseLottoTuiView implements PurchaseLottoView{
         return lottoNumbers;
     }
 
+    @Override
+    public void showErrorMessage(String message) {
+        System.out.println("[ERROR]: " + message);
+    }
+
     private List<Integer> insertLottoNumber() {
         System.out.println("당첨 번호를 입력해주세요. 번호는 쉼표(,)를 기준으로 구분해주세요.");
         try {

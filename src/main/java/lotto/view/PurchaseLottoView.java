@@ -6,4 +6,6 @@ public interface PurchaseLottoView {
     int insertAmount();
 
     List<List<Integer>> insertLottoNumbers(int lottoCount);
+
+    void showErrorMessage(String message);
 }

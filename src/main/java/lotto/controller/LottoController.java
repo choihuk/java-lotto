@@ -17,8 +17,12 @@ public class LottoController {
     }
 
     public void run() {
-        final int lottoAmount = purchaseLottoView.insertAmount();
-        final int lottoCount = lottoStore.purchaseLotto(lottoAmount);
-        List<List<Integer>> lottoNumbers = purchaseLottoView.insertLottoNumbers(lottoCount);
+        try {
+            final int lottoAmount = purchaseLottoView.insertAmount();
+            final int lottoCount = lottoStore.purchaseLotto(lottoAmount);
+            List<List<Integer>> lottoNumbers = purchaseLottoView.insertLottoNumbers(lottoCount);
+        } catch (IllegalArgumentException e) {
+            purchaseLottoView.showErrorMessage(e.getMessage());
+        }
     }
 }
