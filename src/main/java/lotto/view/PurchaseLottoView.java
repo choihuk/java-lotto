@@ -7,5 +7,9 @@ public interface PurchaseLottoView {
 
     List<List<Integer>> insertLottoNumbers(int lottoCount);
 
-    void showErrorMessage(String message);
+    void returnErrorMessage(String message);
+
+    int insertLottoBonusNumber();
+
+    void returnLottoNumbers(List<List<Integer>> lottoAmount);
 }

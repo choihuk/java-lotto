@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import lotto.model.Lotto;
 import lotto.model.LottoStore;
 import lotto.view.PurchaseLottoView;
 
@@ -20,9 +22,16 @@ public class LottoController {
         try {
             final int lottoAmount = purchaseLottoView.insertAmount();
             final int lottoCount = lottoStore.purchaseLotto(lottoAmount);
-            List<List<Integer>> lottoNumbers = purchaseLottoView.insertLottoNumbers(lottoCount);
+            final List<List<Integer>> lottoNumbers = purchaseLottoView.insertLottoNumbers(lottoCount);
+            List<Lotto> lottos = lottoNumbers.stream()
+                                              .map(Lotto::new)
+                                              .collect(Collectors.toList());
+            final int lottoBonusNumber = purchaseLottoView.insertLottoBonusNumber();
+            Lotto.validLottoNumber(lottoBonusNumber);
+
+            purchaseLottoView.returnLottoNumbers(lottoNumbers);
         } catch (IllegalArgumentException e) {
-            purchaseLottoView.showErrorMessage(e.getMessage());
+            purchaseLottoView.returnErrorMessage(e.getMessage());
         }
     }
 }

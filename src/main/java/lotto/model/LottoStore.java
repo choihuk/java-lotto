@@ -14,8 +14,8 @@ public class LottoStore {
     }
 
     private void validateLottoAmount(int lottoAmount) {
-        if (PRICE % lottoAmount != 0) {
-            throw new IllegalArgumentException();
+        if (lottoAmount % PRICE != 0) {
+            throw new IllegalArgumentException("잘못된 로또 금액입니다.");
         }
     }
 }
