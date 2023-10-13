@@ -7,6 +7,7 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoFactory;
 import lotto.model.lotto.LottoResult;
 import lotto.model.lottostore.LottoStore;
+import lotto.model.lottostore.MyLottoStore;
 import lotto.model.lotto.WinLotto;
 import lotto.view.PurchaseLottoView;
 
@@ -16,9 +17,9 @@ public class LottoController {
     private final LottoStore lottoStore;
 
 
-    public LottoController(PurchaseLottoView purchaseLottoView) {
+    public LottoController(PurchaseLottoView purchaseLottoView, LottoStore lottoStore) {
         this.purchaseLottoView = purchaseLottoView;
-        this.lottoStore = new LottoStore();
+        this.lottoStore = lottoStore;
     }
 
     public void run() {

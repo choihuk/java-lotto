@@ -3,15 +3,17 @@ package lotto.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import lotto.dto.LottoResultResponse;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoResult;
 
-public class PurchaseLottoTuiView implements PurchaseLottoView{
+public class PurchaseLottoTuiView implements PurchaseLottoView {
 
     private final BufferedReader bufferedReader;
 
@@ -64,24 +66,30 @@ public class PurchaseLottoTuiView implements PurchaseLottoView{
     @Override
     public void returnLottoResults(LottoResultResponse lottoResultResponse) {
         StringBuilder stringBuilder = new StringBuilder();
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
         System.out.println("당첨 통계 \n ---");
         stringBuilder.append(LottoResult.FIFTH_PLACE.getCorrespondingNumber()).append("개 일치 (")
-                     .append(LottoResult.FIFTH_PLACE.getPrize()).append("원) - ")
+                     .append(numberFormat.format(LottoResult.FIFTH_PLACE.getPrize())).append("원) - ")
                      .append(lottoResultResponse.getFifthPlaceCount()).append("개\n")
                      .append(LottoResult.FOURTH_PLACE.getCorrespondingNumber()).append("개 일치 (")
-                     .append(LottoResult.FOURTH_PLACE.getPrize()).append("원) - ")
+                     .append(numberFormat.format(LottoResult.FOURTH_PLACE.getPrize())).append("원) - ")
                      .append(lottoResultResponse.getFourthPlaceCount()).append("개\n")
                      .append(LottoResult.THIRD_PLACE.getCorrespondingNumber()).append("개 일치 (")
-                     .append(LottoResult.THIRD_PLACE.getPrize()).append("원) - ")
+                     .append(numberFormat.format(LottoResult.THIRD_PLACE.getPrize())).append("원) - ")
                      .append(lottoResultResponse.getThirdPlaceCount()).append("개\n")
-                     .append(LottoResult.SECOND_PLACE.getCorrespondingNumber()).append("개 일치 , 보너스 볼 일치 (")
-                     .append(LottoResult.SECOND_PLACE.getPrize()).append("원) - ")
+                     .append(LottoResult.SECOND_PLACE.getCorrespondingNumber()).append("개 일치, 보너스 볼 일치 (")
+                     .append(numberFormat.format(LottoResult.SECOND_PLACE.getPrize())).append("원) - ")
                      .append(lottoResultResponse.getSecondPlaceCount()).append("개\n")
                      .append(LottoResult.FIRST_PLACE.getCorrespondingNumber()).append("개 일치 (")
-                     .append(LottoResult.FIRST_PLACE.getPrize()).append("원) - ")
+                     .append(numberFormat.format(LottoResult.FIRST_PLACE.getPrize())).append("원) - ")
                      .append(lottoResultResponse.getFirstPlaceCount()).append("개\n")
-                    .append("총 수익률은 ").append(lottoResultResponse.getYieldRate()).append("% 입니다.");
+                    .append("총 수익률은 ").append(lottoResultResponse.getYieldRate()).append("%입니다.");
         System.out.println(stringBuilder.toString());
+    }
+
+    @Override
+    public void returnErrorMessage(final String message) {
+        System.out.println("[ERROR]: " + message);
     }
 
     private void returnLottoNumber(final Lotto lotto) {
@@ -94,10 +102,5 @@ public class PurchaseLottoTuiView implements PurchaseLottoView{
         stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
         stringBuilder.append("]");
         System.out.println(stringBuilder.toString());
-    }
-
-    @Override
-    public void returnErrorMessage(final String message) {
-        System.out.println("[ERROR]: " + message);
     }
 }
