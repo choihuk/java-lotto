@@ -2,14 +2,19 @@ package lotto.view;
 
 import java.util.List;
 
+import lotto.dto.LottoResultResponse;
+import lotto.model.lotto.Lotto;
+
 public interface PurchaseLottoView {
     int insertAmount();
-
-    List<List<Integer>> insertLottoNumbers(int lottoCount);
 
     void returnErrorMessage(String message);
 
     int insertLottoBonusNumber();
 
-    void returnLottoNumbers(List<List<Integer>> lottoAmount);
+    void returnLottos(List<Lotto> lottos);
+
+    List<Integer> insertLottoWinNumber();
+
+    void returnLottoResults(LottoResultResponse lottoResultResponse);
 }
