@@ -34,3 +34,27 @@
 2. 시스템 책임을 더 작은 책임으로 분할
 3. 분할된 책임을 수행할 수 있는 적절한 객체 혹은 역할을 찾아 책임 할당
 4. 시스템 책임을 완전히 수행할 때까지 2, 3번을 반복
+
+## 프로젝트 구조
+```shell
+├── Application.java
+├── controller
+│   └── LottoController.java
+├── dto
+│   └── LottoResultResponse.java
+├── model
+│   ├── lotto
+│   │   ├── Lotto.java
+│   │   ├── LottoFactory.java
+│   │   ├── LottoInfo.java
+│   │   ├── LottoResult.java
+│   │   ├── WinLotto.java
+│   │   └── WinLottoImpl.java
+│   └── lottostore
+│       ├── LottoMachine.java
+│       ├── LottoStore.java
+│       └── MyLottoStore.java
+└── view
+    ├── PurchaseLottoTuiView.java
+    └── PurchaseLottoView.java
+```
